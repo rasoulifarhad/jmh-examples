@@ -197,6 +197,56 @@ import lombok.extern.slf4j.Slf4j;
  *       }
  *   }
  * 
+ * Terminology – Trial, Warmup and Iteration
+ * 
+ *  - Trial:
+ *    The JMH benchmark is run for a number of trials. 
+ *    Trials are also called as forks. 
+ * 
+ *  - Warmup:
+ *    For each fork, a number of iterations are configured as warmups.
+ *    This is to get the JVM to warmup the code we are measuring. 
+ *    This is important to avoid fluctuations or variations in the runtime once we start the actual iterations.
+ * 
+ *  - Iteration:
+ *    This is the actual benchmark code execution/iteration. 
+ *    The performance numbers from this will be output as the JMH benchmark result.
+ * 
+ * Each warmup iteration and measurement iteration is executed for a certain time. 
+ * 
+ * A JMH fork consists of a set of warmups (w) and a set of measurements (m). 
+ * 
+ * Annotations
+ * 
+ *   - BenchmarkMode
+ *   - OutputTimeUnit
+ *   - Benchmark
+ *      > Must be public
+ *      > The arguments may be one of the JMH’s State, Control or Blackhole classes.
+ *   - Fork
+ *      > This is used to tell the number of trials or forks.
+ *      > The value field is the number of forks. 
+ *      > It has a warmup field that configures the number of forks that must 
+ *        be treated as warmups.
+ *      > Example: @Fork(value = 5, warmups = 2)
+ *      > We here have 5 forks and among them 2 entire forks will be warmups.
+ * 
+ *   - Measurement
+ *      > It is used to set the default measurement parameters for the benchmark. 
+ *      > It allows to specify the number of iterations and the time for which 
+ *        each is to be executed. 
+ *      > Example: @Measurement(iterations = 3, time = 1000, timeUnit = TimeUnit.MILLISECONDS)
+ *      > We here specify 3 iterations each to be run for 1000 millisecond (1 second). 
+ *        The default time unit is seconds.
+ * 
+ *   - Warmup
+ *      > Warmup parameters are similar to that of Measurement except that it applies 
+ *        for the warmup runs.
+ *      > Example: @Warmup(iterations = 3, time = 2)
+ *      > This dedicates 3 full iterations as warmup each running for 2 seconds.
+ *  
+ * A State is a class-level annotation. We can pass any class annotated with @State as an argument to the 
+ * benchmark method.
  */
 @Slf4j
 public class MyBenchmark {
