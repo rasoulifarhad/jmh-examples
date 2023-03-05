@@ -1,0 +1,54 @@
+## Benchmark modes
+#
+#  - Mode.Throughput - measures the raw throughput (operations per unit of time)
+#
+#  - Mode.AverageTime - measures the average execution time (time per operation)
+#
+#  - Mode.SampleTime - samples the execution time. Instead of measuring the total 
+#    time, JMH measure the time spent in *some* of the benchmark method calls (can 
+#    infer the distributions, percentiles, etc.)
+#
+#  - Mode.SingleShotTime - measures the single method invocation time
+#
+## How we (should) approach performance optimizations
+#
+#  - Identify a use case for which performance is unsatisfactory
+#
+#  - Set a performance goal
+#
+#  - Write and validate benchmark(s) for this use case
+#
+#  - Figure out what to fix
+#
+#  - Apply performance fix and see if results improve
+#
+#  - If goal is achieved stop, otherwise keep optimizing if cost is not prohibitive
+#
+## Benchmark Time Unit
+#
+#
+## Benchmark State
+#
+#
+## Understanding JMH
+#
+# JMH creates multiple JVM forks. 
+#
+# for each for fork, it runs n warmup iterations, which do not get measured and are just needed to 
+# reach steady state before m iterations are run. 
+#
+#
+#  ┌────────────┐┌────────────┐ ┌────────────┐┌────────────┐           ┌────────────┐┌────────────┐
+#  │  n Warmup  ││     m      │ │  n Warmup  ││     m      │           │  n Warmup  ││     m      │
+#  │ iterations ││ iterations │ │ iterations ││ iterations │    ....   │ iterations ││ iterations │     
+#  └────────────┘└────────────┘ └────────────┘└────────────┘           └────────────┘└────────────┘
+#  └─────────────┬────────────┘ └─────────────┬────────────┘           └─────────────┬────────────┘ 
+#                │                            │                                      │
+#                │                            │                                      │                       
+#                └────────────────────────────┼──────────────────────────────────────┘
+#                                             │
+# 
+#                                       Forked JVM runs  
+#
+
+
