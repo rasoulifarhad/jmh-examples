@@ -22,9 +22,9 @@
     <spring.boot.version>2.7.8</spring.boot.version>
     <commons.codec.version>1.15</commons.codec.version>
     <lombok.version>1.18.26</lombok.version>
-		<assertj.version>3.24.2</assertj.version>
-		<hamcrest.version>1.3</hamcrest.version>
-		<slf4j.version>2.0.6</slf4j.version>
+    <assertj.version>3.24.2</assertj.version>
+    <hamcrest.version>1.3</hamcrest.version>
+    <slf4j.version>2.0.6</slf4j.version>
     <jmh.version>1.36</jmh.version>
   </properties>
   <dependencies>
