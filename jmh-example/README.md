@@ -249,4 +249,8 @@
 # See https://github.com/guozheng/jmh-tutorial
 # See https://www.oracle.com/technical-resources/articles/java/architect-benchmarking.html
 # See https://www.oracle.com/technetwork/articles/java/architect-benchmarking-2266277.html
+#
+# See https://github.com/mbosecke/template-benchmark/tree/master
+# See https://github.com/arey/java-object-mapper-benchmark
+# See https://github.com/benalexau/hash-bench
 

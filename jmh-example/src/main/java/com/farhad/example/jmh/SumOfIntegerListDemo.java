@@ -18,6 +18,7 @@ import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.TearDown;
 import org.openjdk.jmh.annotations.Warmup;
 import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.results.format.ResultFormatType;
@@ -28,20 +29,22 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-@Fork(value = 1, warmups = 1)
+@Fork(value = 2)
 @Warmup(iterations = 1)
 public class SumOfIntegerListDemo {
     
     @State(Scope.Benchmark)
     public static class IntegerListSupplier {
 
-        @Param({"1000000", "10000000", "100000000"})
+        @Param({"100", "1000"})
+        // @Param({"1000000", "10000000", "100000000"})
         public int listSize;
 
         private List<Integer> testIntList;
         
         @Setup(Level.Trial)
         public void setup() {
+            System.out.println("Setup!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             testIntList = new Random()
                                 .ints()
                                 .limit(listSize)
@@ -49,6 +52,10 @@ public class SumOfIntegerListDemo {
                                 .collect(Collectors.toList());
         }
 
+        @TearDown(Level.Trial)
+        public void tearDown() {
+            System.out.println("TearDown!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        }
         public List<Integer> get() {
             return testIntList;
         }
