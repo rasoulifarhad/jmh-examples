@@ -230,4 +230,23 @@
 # Benchmark methods can reference the states, and JMH will inject the
 # appropriate states while calling these methods. 
 #
+#
+# Setting up the benchmarking project
+# 
+#  $ mvn archetype:generate \
+#   -DinteractiveMode=false \
+#   -DarchetypeGroupId=org.openjdk.jmh \
+#   -DarchetypeArtifactId=jmh-java-benchmark-archetype \
+#   -DgroupId=org.sample \
+#   -DartifactId=test \
+#   -Dversion=1.0
+#
+# See https://blog.avenuecode.com/java-microbenchmarks-with-jmh-part-1
+# See https://blog.avenuecode.com/java-microbenchmarks-with-jmh-part-2
+# See https://blog.avenuecode.com/java-microbenchmarks-with-jmh-part-3
+#
+# See https://github.com/openjdk/jmh-jdk-microbenchmarks
+# See https://github.com/guozheng/jmh-tutorial
+# See https://www.oracle.com/technical-resources/articles/java/architect-benchmarking.html
+# See https://www.oracle.com/technetwork/articles/java/architect-benchmarking-2266277.html
 
